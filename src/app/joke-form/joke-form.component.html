@@ -1,0 +1,56 @@
+<!--<div class="form-group">
+    <input class="form-control" type="text" placeholder="" #setup>
+    <input class="form-control" type="text" placeholder="" #punchline>
+  </div>
+  <button class="btn"(click)="addJoke(setup.value,punchline.value)">Add</button>-->
+
+  <div class="container">
+    <pre>{{ f.form.value | json }}</pre>
+  <form  #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" >
+      <label>Setup</label>
+      <input type="text"
+      [ngClass]="{
+        'is-invalid': setup.invalid && (setup.dirty || setup.touched),
+        'is-valid': setup.valid && (setup.dirty || setup.touched)
+      }"
+             class="form-control"
+             name="Setup"
+             [(ngModel)]="model.setup"
+			       required
+             #setup="ngModel">
+      <div class="form-control-feedback"
+          *ngIf="setup.errors && (setup.dirty || setup.touched)">
+          <p *ngIf="setup.errors.required">Setup is required</p>
+      </div>
+    </div>
+
+
+
+
+    <div class="form-group" >
+      <label>punchline</label>
+      <input type="text"
+      [ngClass]="{
+        'is-invalid': punchline.invalid && (punchline.dirty || punchline.touched),
+        'is-valid': punchline.valid && (punchline.dirty || punchline.touched)
+      }"
+             class="form-control"
+             name="punchline"
+             [(ngModel)]="model.punchline"
+			       required
+             #punchline="ngModel">
+      <div class="form-control-feedback"
+          *ngIf="punchline.errors && (punchline.dirty || punchline.touched)">
+          <p *ngIf="punchline.errors.required">punchline is required</p>
+      </div>
+    </div>
+
+    <button
+        [disabled]="f.invalid"
+        type="submit"
+        class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+
